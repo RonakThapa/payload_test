@@ -33,48 +33,6 @@ export default function Component() {
         </Button>
       </header>
 
-      {/* Main Content */}
-      <main className="relative z-10 flex flex-col items-center justify-center min-h-[calc(100vh-200px)] px-6 text-center">
-        {/* Badge */}
-        <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-8">
-          <div className="w-4 h-4 bg-white rounded-full flex items-center justify-center">
-            <div className="w-2 h-2 bg-purple-600 rounded-full" />
-          </div>
-          <span className="text-sm text-gray-300">Affordable Price With Best Results</span>
-        </div>
-
-        {/* Hero Heading */}
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight max-w-5xl mb-6">
-          Optimize Your Testing with <span className="block">Advanced Strategies</span>
-        </h1>
-
-        {/* Subheading */}
-        <p className="text-lg md:text-xl text-gray-300 max-w-3xl mb-12 leading-relaxed">
-          Unlock the power of data-driven decisions with our cutting-edge AI&ML testing software.
-          Experience faster results through our innovative Multi-Variate Testing and Multi-Armed
-          Bandit Approach.
-        </p>
-
-        {/* CTA Button */}
-        <Button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-full text-lg mb-20">
-          Join Waitlist
-        </Button>
-
-        {/* Trusted by Companies */}
-        <div className="w-full max-w-4xl">
-          <p className="text-gray-400 mb-8 text-lg">Trusted by Companies</p>
-
-          <div className="flex items-center justify-center gap-12 md:gap-16 opacity-60">
-            {/* Company logos - using placeholder text since we can't see the exact logos clearly */}
-            <div className="text-gray-400 text-xl font-semibold">alace.ai</div>
-            <div className="text-gray-400 text-xl font-semibold">mohq</div>
-            <div className="text-gray-400 text-xl font-semibold">CIO</div>
-            <div className="text-gray-400 text-xl font-semibold">alace.ai</div>
-            <div className="text-gray-400 text-xl font-semibold">mohq</div>
-          </div>
-        </div>
-      </main>
-
       <GridBackground />
 
       <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[1400px] h-[700px] bg-gradient-radial from-purple-500/50 via-purple-500/30 to-transparent rounded-t-full blur-[60px]" />
