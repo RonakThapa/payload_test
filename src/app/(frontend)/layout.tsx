@@ -6,15 +6,18 @@ import { GeistSans } from 'geist/font/sans'
 import React from 'react'
 
 import { AdminBar } from '@/components/AdminBar'
-import { Footer } from '@/Footer/Component'
 import { Header } from '@/Header/Component'
 import { Providers } from '@/providers'
 import { InitTheme } from '@/providers/Theme/InitTheme'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { draftMode } from 'next/headers'
+import { Provider } from 'react-redux'
 
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
+import Footer from '@/Footer/Component'
+import { store } from '../redux/store'
+import ReduxProvider from '../custom_components/ReduxProvider'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
@@ -33,10 +36,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               preview: isEnabled,
             }}
           />
-
-          <Header />
-          {children}
-          <Footer />
+          <ReduxProvider>
+            {/* <Header /> */}
+            {children}
+            {/* <Footer /> */}
+          </ReduxProvider>
         </Providers>
       </body>
     </html>

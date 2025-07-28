@@ -1,42 +1,126 @@
-'use client'
-import { useHeaderTheme } from '@/providers/HeaderTheme'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
+'use client';
 
-import type { Header } from '@/payload-types'
+import Link from 'next/link';
+import { useState } from 'react';
 
-import { Logo } from '@/components/Logo/Logo'
-import { HeaderNav } from './Nav'
+export default function HeaderClient() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-interface HeaderClientProps {
-  data: Header
-}
-
-export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
-  /* Storing the value in a useState to avoid hydration errors */
-  const [theme, setTheme] = useState<string | null>(null)
-  const { headerTheme, setHeaderTheme } = useHeaderTheme()
-  const pathname = usePathname()
-
-  useEffect(() => {
-    setHeaderTheme(null)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname])
-
-  useEffect(() => {
-    if (headerTheme && headerTheme !== theme) setTheme(headerTheme)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [headerTheme])
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   return (
-    <header className="container relative z-20   " {...(theme ? { 'data-theme': theme } : {})}>
-      <div className="py-8 flex justify-between">
-        <Link href="/">
-          <Logo loading="eager" priority="high" className="invert dark:invert-0" />
-        </Link>
-        <HeaderNav data={data} />
+    <header className="bg-gray-900 text-white shadow-lg">
+      <div className="max-w-6xl mx-auto px-4">
+        <div className="flex justify-between items-center py-4">
+          {/* Logo */}
+          <div className="flex items-center">
+            <Link href="/" className="text-xl font-bold hover:text-gray-300 transition-colors">
+              Your Company
+            </Link>
+          </div>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex space-x-8">
+            <Link href="/" className="text-gray-300 hover:text-white transition-colors">
+              Home
+            </Link>
+            <Link href="/about" className="text-gray-300 hover:text-white transition-colors">
+              About
+            </Link>
+            <Link href="/services" className="text-gray-300 hover:text-white transition-colors">
+              Services
+            </Link>
+            <Link href="/contact" className="text-gray-300 hover:text-white transition-colors">
+              Contact
+            </Link>
+          </nav>
+
+          {/* CTA Button */}
+          <div className="hidden md:block">
+            <Link
+              href="/get-started"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md font-medium transition-colors"
+            >
+              Get Started
+            </Link>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden p-2 rounded-md hover:bg-gray-800 transition-colors"
+            onClick={toggleMenu}
+            aria-label="Toggle menu"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              {isMenuOpen ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              )}
+            </svg>
+          </button>
+        </div>
+
+        {/* Mobile Navigation Menu */}
+        {isMenuOpen && (
+          <div className="md:hidden border-t border-gray-800 py-4">
+            <nav className="flex flex-col space-y-2">
+              <Link
+                href="/"
+                className="text-gray-300 hover:text-white py-2 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Home
+              </Link>
+              <Link
+                href="/about"
+                className="text-gray-300 hover:text-white py-2 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                About
+              </Link>
+              <Link
+                href="/services"
+                className="text-gray-300 hover:text-white py-2 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Services
+              </Link>
+              <Link
+                href="/contact"
+                className="text-gray-300 hover:text-white py-2 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Contact
+              </Link>
+              <Link
+                href="/get-started"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md font-medium transition-colors mt-2 text-center"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Get Started
+              </Link>
+            </nav>
+          </div>
+        )}
       </div>
     </header>
-  )
+  );
 }

@@ -97,6 +97,9 @@ const config = {
         mono: ['var(--font-geist-mono)'],
         sans: ['var(--font-geist-sans)'],
       },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(ellipse at center top, var(--tw-gradient-stops))',
+      },
       keyframes: {
         'accordion-down': {
           from: { height: '0' },
